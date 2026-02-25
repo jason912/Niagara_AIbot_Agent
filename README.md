@@ -1,4 +1,4 @@
-# Gline AIbot Agent
+# Niagara AIbot Agent
 Niagara AI Agent: Seamless AI Integration for the Niagara Framework
 
 Welcome to our Niagara AI Agent tool. This powerful component enables you to easily invoke external AI APIs directly from your Niagara station and seamlessly feed the computed results back into your system.
