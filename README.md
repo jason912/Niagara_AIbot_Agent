@@ -32,7 +32,7 @@ Support & Customization:
 Have specific requirements or integration needs? We’d be happy to help. Feel free to reach out to discuss custom features or tailored solutions.
 
 Contact for Trial & Support:
-Jason Zhang – mailto:jason.zhang@gline-net.com  
+Jason Zhang – mailto:jason.zhang@gline-net.com or WhatsApp +8613801909968.
 Shanghai Gline Net Co., Ltd. – Your Partner in Smarter Automation
 
 
