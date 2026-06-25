@@ -1,9 +1,9 @@
 # Niagara AI Agent 🧠
 
-[![Niagara 4.14+](https://img.shields.io/badge/Niagara-4.14%2B-blue)](https://www.tridium.com)
-[![License: Commercial](https://img.shields.io/badge/License-Commercial-orange)](LICENSE)
-[![Contact](https://img.shields.io/badge/Contact-WhatsApp-brightgreen)](https://wa.me/8613801909968)
-[![Vendor](https://img.shields.io/badge/Vendor-Shanghai%20Gline%20Net-lightgrey)](https://www.glineweb.com)
+ ![Niagara 4.14+](https://img.shields.io/badge/Niagara-4.14%2B-blue)](https://www.tridium.com)
+!![License: Commercial](https://img.shields.io/badge/License-Commercial-orange)](LICENSE)
+!![Contact](https://img.shields.io/badge/Contact-WhatsApp-brightgreen)](https://wa.me/8613801909968)
+!![Vendor](https://img.shields.io/badge/Vendor-Shanghai%20Gline%20Net-lightgrey)](https://www.glineweb.com)
 
 > **Bring AI into your Niagara Station — query, analyze, automate, and decide, in natural language.**
 
@@ -11,7 +11,10 @@
 
 ## What Is It?
 
-The Niagara AI Agent is a native Niagara 4 module that connects your station to large language models (DeepSeek, OpenAI, local LLMs, etc.). Instead of writing BQL queries by hand or clicking through Workbench, you can **ask questions in plain English** and get structured results written directly into Niagara points and histories.
+The Niagara AI Agent is a native Niagara 4 module that connects your station to large language models via the OpenAI-compatible API format. Instead of writing BQL queries by hand or clicking through Workbench, you can **ask questions in plain English** and get structured results written directly into Niagara points and histories.
+
+> ✅ **Tested with:** DeepSeek via OpenAI-compatible API  
+> 🔧 **Compatible with:** Any LLM that supports the OpenAI API format (GPT-4o, local ollama, vLLM, LM Studio, etc.) — not individually tested but expected to work.
 
 ---
 
@@ -29,10 +32,11 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 
 ## Quick Start
 
+### Option A — Use our pre-signed JAR (gline.pem)
+
 ```bash
-# 1. Install our certificate (gline.pem) into your station trust store
-#    or provide your own certificate + password — we will re-sign the JAR
-#    with your certificate. Contact us for details.
+# 1. Install gline.pem certificate into your station trust store
+#    (available in this repository under /certs/)
 
 # 2. Deploy the module
 #    Place AIbotAgent-rt.jar in your Niagara modules/ directory
@@ -43,24 +47,39 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 
 # 4. Configure your AI provider
 #    Open the AI Agent service in Workbench:
-#    - Set endpoint: https://api.deepseek.com (or your LLM)
+#    - Set base URL: https://api.deepseek.com (or your LLM endpoint)
 #    - Enter your API key (encrypted with included ApiKeyEncryption tool)
-#    - Choose model: deepseek-chat / gpt-4o / local model
+#    - Choose your model name
 
 # 5. Start asking questions
 #    Wire the AI Agent input/output to any Niagara ControlPoint
 ```
 
+### Option B — Custom certificate signing
+
+If your organization requires a certificate signed with your own key:
+
+```bash
+# 1. Provide us with your certificate file (.pem) and password
+# 2. We recompile and re-sign the JAR with your certificate
+# 3. Deploy the custom-signed JAR to your station
+# 4. No external certificate installation needed
+```
+
+Contact us for custom signing requests.
+
 ---
 
 ## Features
 
-### 🔌 Multi-Provider Support
+### 🔌 AI Provider Support
 
-- **DeepSeek** — native integration, optimized for cost efficiency
-- **OpenAI** — GPT-4o, GPT-4-turbo, GPT-3.5-turbo
-- **Any OpenAI-compatible endpoint** — local ollama, vLLM, LM Studio, etc.
-- **Custom endpoint** — bring your own private LLM
+| Provider | Status | Notes |
+|----------|--------|-------|
+| **DeepSeek** | ✅ Tested | Recommended for cost efficiency |
+| **OpenAI (GPT-4o, etc.)** | 🔧 Expected to work | OpenAI-compatible format |
+| **Local LLM (ollama, vLLM)** | 🔧 Expected to work | Set your local endpoint as base URL |
+| **Any OpenAI-compatible API** | 🔧 Expected to work | Same format, not individually tested |
 
 ### 🔗 Native Niagara Integration
 
@@ -76,6 +95,7 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 | **TokenCalculator** | Estimate token usage before calling the API |
 | **HeapMonitor** | Monitor JACE memory impact in real time |
 | **ApiKeyEncryption** | Securely store provider API keys in station database |
+h
 
 ### 🔐 Security
 
@@ -89,7 +109,7 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 ## Pricing
 
 | Tier | License | Price | Best For |
-|:----:|---------|:-----:|----------|
+|:-----:|---------|:-----:|----------|
 | 🆓 | **Trial** | **Free** | Evaluation, testing, proof-of-concept |
 | 🥇 | **Single Station** | **$299** | One JACE / Supervisor |
 | 🏢 | **Site Pack (5 stations)** | **$999** | Multi-controller projects |
@@ -105,7 +125,7 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 | Component | Requirement |
 |-----------|-------------|
 | **Niagara Version** | 4.14 or later (JACE, Edge, Supervisor, Windows) |
-| **JAR Signing** | Requires gline.pem certificate in station trust store, or your own certificate on request |
+| **JAR Signing** | Pre-signed with gline.pem, or custom-signed with your certificate on request |
 | **Network** | Outbound HTTPS to your LLM provider |
 | **JACE Memory** | 512 MB+ heap recommended (tested on JACE-8000) |
 
@@ -116,10 +136,13 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 **Q: Do I need an internet connection?**  
 A: Yes, to reach the LLM API. For air-gapped deployments, we support on-premise local LLMs via custom endpoint configuration.
 
+**Q: Which LLMs have you tested?**  
+A: We have tested DeepSeek (via OpenAI-compatible API). Any LLM that supports the OpenAI API format should work, but has not been individually tested.
+
 **Q: Does the AI module impact JACE performance?**  
 A: Each inference call is asynchronous and lightweight (non-blocking). Use the included HeapMonitor to verify on your hardware.
 
-**Q: Can I use my own OpenAI key?**  
+**Q: Can I use my own API key?**  
 A: Yes. Configure any OpenAI-compatible endpoint with your own key. All keys are encrypted at rest.
 
 **Q: How long does a query take?**  
@@ -129,7 +152,20 @@ A: Typically 1–5 seconds depending on LLM provider and query complexity.
 A: Yes — full features, no limitations. Only the license duration (30 days) is restricted.
 
 **Q: Can I use my own certificate instead of gline.pem?**  
-A: Yes. Provide us with your certificate and password. We will re-sign the JAR with your certificate at no additional charge.
+A: Yes. Provide us with your certificate and password. We will recompile and re-sign the JAR with your certificate at no additional charge.
+
+---
+
+## Repository Contents
+
+```
+├── AIbotAgent-rt.jar       ← Pre-signed module (gline.pem)
+├── certs/
+│   └── gline.pem           ← Default certificate
+├── LICENSE
+├── README.md
+└── src/                    ← Source code (available on request)
+```
 
 ---
 
