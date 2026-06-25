@@ -156,12 +156,24 @@ A: Yes. Provide us with your certificate and password. We will recompile and re-
 
 ---
 
+## Documentation
+
+| Manual | Description |
+|--------|-------------|
+| [AIbot Technical Reference](docs/AIbot%20Technical%20Reference%20Manual.pdf) | Complete API reference, configuration guide, and usage examples |
+| [ApiKey Encryption](docs/ApiKey%20Encryption%20Reference%20Manual.pdf) | How to securely store and manage your LLM API keys |
+| [StringToFile](docs/StringToFile%20user%20manual.pdf) | Save AI-generated text output directly to station files |
+| [TokenCalculator](docs/TokenCalculator%20user%20manual.pdf) | Estimate token usage and API costs before inference |
+
+---
+
 ## Repository Contents
 
 ```
 ├── AIbotAgent-rt.jar       ← Pre-signed module (gline.pem)
 ├── certs/
 │   └── gline.pem           ← Default certificate
+├── docs/                   ← User manuals (PDF)
 ├── LICENSE
 ├── README.md
 └── src/                    ← Source code (available on request)
