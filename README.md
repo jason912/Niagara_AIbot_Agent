@@ -35,7 +35,7 @@ The Niagara AI Agent is a native Niagara 4 module that connects your station to 
 ### Option A — Use our pre-signed JAR (gline.pem)
 
 ```bash
-# 1. Install gline.pem certificate into your station trust store
+# 1. Install the public gline.pem certificate (certificate only -- it contains no private key) into your station trust store
 #    (available in this repository under /certs/)
 
 # 2. Deploy the module
